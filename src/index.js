@@ -29,7 +29,7 @@ ReactDOM.render(
           <Route path="/home">
             <Home />
           </Route>
-          <Route path="/">
+          <Route exact path="/">
             <Home />
           </Route>
         </Switch>
