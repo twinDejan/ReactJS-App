@@ -2,7 +2,7 @@ import React from 'react';
 import logo from './logo.svg';
 import './App.css';
 
-function App() {
+const App = ({classComponent, functionalComponent}) => {
   return (
     <div className="App">
       <header className="App-header">
@@ -18,9 +18,12 @@ function App() {
         >
           Learn React
         </a>
+        {/* {props.children} */}
+        {classComponent}
+        {functionalComponent}
       </header>
     </div>
   );
-}
+};
 
 export default App;
