@@ -1,0 +1,11 @@
+.app-bar{
+    height: 60px;
+}
+
+.nav-link{
+    font-size: xx-large;
+    padding-left: 20px;
+    color: rgb(180, 180, 180);
+    text-decoration: none;
+}
+

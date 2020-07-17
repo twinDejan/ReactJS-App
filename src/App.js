@@ -19,8 +19,8 @@ const App = ({classComponent, functionalComponent}) => {
           Learn React
         </a>
         {/* {props.children} */}
-        {classComponent}
-        {functionalComponent}
+        {/* {classComponent}
+        {functionalComponent} */}
       </header>
     </div>
   );

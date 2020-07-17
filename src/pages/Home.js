@@ -1,18 +1,16 @@
 import React from 'react';
-import AppBar from '@material-ui/core/AppBar';
-import Typography from '@material-ui/core/Typography';
+import BaseLayout from "./_Layout/BaseLayout";
+
+import "./pageStyles.css";
 
 const Home = () => {
-    return(<div>
-        <AppBar position="static">
-            <Typography variant="h6">
-            Home Page
-            </Typography>
-        </AppBar>
+    return(
+        <BaseLayout>
         <div>
             Content Home Page
         </div>
-    </div>)
-}
+        </BaseLayout>
+    );
+};
 
 export default Home;
