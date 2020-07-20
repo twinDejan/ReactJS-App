@@ -8,13 +8,9 @@ const BaseLayout = ({children}) => {
     <div>
         <AppBar position="static" className="app-bar">
             <Typography variant="h6">
-            <NavLink exact to="/" className="nav-link" activeStyle={{
-                color: "white"
-                }}
+            <NavLink exact to="/" className="nav-link" activeClassName="nav-link-active"
             >Home</NavLink>
-            <NavLink exact to="/about" className="nav-link" activeStyle={{
-                color: "white"
-                }}
+            <NavLink exact to="/about" className="nav-link" activeClassName="nav-link-active"
             >About</NavLink>
             </Typography>
         </AppBar>
