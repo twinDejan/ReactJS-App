@@ -16,6 +16,7 @@ import FunctionalComponent from './components/FunctionalComponent';
 //Pages
 import Home from './pages/Home';
 import About from'./pages/About';
+import ToDo from'./pages/ToDo';
 
 import * as serviceWorker from './serviceWorker';
 
@@ -28,6 +29,9 @@ ReactDOM.render(
           </Route>
           <Route path="/home">
             <Home />
+          </Route>
+          <Route path="/todo">
+            <ToDo />
           </Route>
           <Route exact path="/">
             <Home />

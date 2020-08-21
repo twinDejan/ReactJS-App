@@ -10,6 +10,8 @@ const BaseLayout = ({children}) => {
             <Typography variant="h6">
             <NavLink exact to="/" className="nav-link" activeClassName="nav-link-active"
             >Home</NavLink>
+            <NavLink exact to="/todo" className="nav-link" activeClassName="nav-link-active"
+            >ToDo</NavLink>
             <NavLink exact to="/about" className="nav-link" activeClassName="nav-link-active"
             >About</NavLink>
             </Typography>
