@@ -33,7 +33,8 @@ const ToDo = () => {
 			...newTodoState,
 			[event.target.name]: event.target.value,
 		});
-	};
+    };
+    
     return(
         <BaseLayout>
         <div className="page-cintent-container"></div>
