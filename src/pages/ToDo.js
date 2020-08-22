@@ -1,4 +1,4 @@
-import React from 'react';
+import React, {useState} from 'react';
 import BaseLayout from "./_Layout/BaseLayout";
 
 import AddNewToDoItem from "../components/ToDo/AddNewToDoItem";
@@ -6,30 +6,55 @@ import TodoItem from "../components/ToDo/ToDoItem";
 import ToDoPageHeader from "../components/ToDo/ToDoPageHeader";
 
 import Grid from "@material-ui/core/Grid";
-import Card from "@material-ui/core/Card";
-import CardHeader from "@material-ui/core/CardHeader";
-import TextField from "@material-ui/core/TextField";
-
 import "./pageStyles.css";
 
 const ToDo = () => {
+    const [toDoData, setToDoData] = useState([
+		{ id: "0", title: "Todo 1", content: "TodoItem1 content content content" },
+		{ id: "1", title: "Todo 2", content: "TodoItem2 content content content" },
+		{ id: "2", title: "Todo 3", content: "TodoItem3 content content content" },
+    ]);
+    
+    const [newTodoState, setNewTodoState] = useState();
+
+    const addNewTodo = () => {
+        setToDoData([
+            ... toDoData,
+            {
+                id: toDoData.length + 1,
+                title: newTodoState.todoTitle,
+                content: newTodoState.toDoContent,
+            },
+        ]);
+    }
+
+    const onChange = (event) => {
+		setNewTodoState({
+			...newTodoState,
+			[event.target.name]: event.target.value,
+		});
+	};
     return(
         <BaseLayout>
         <div className="page-cintent-container"></div>
             <Grid container spacing={3}>
                 <Grid key="page-title" item xs={10}>
-                    <ToDoPageHeader/>
+                {JSON.stringify(newTodoState)}
+                    <ToDoPageHeader onChangeHandler={onChange}/>
                 </Grid>
                 <Grid key="add-new" item xs={2}>
-                    <AddNewToDoItem/>
+                    <AddNewToDoItem addNewTodoHandler={addNewTodo}/>
                 </Grid>
                 <Grid item xs={12}>
-                    <TodoItem todoData={{id:"0", title:"ToDo 1", content:"dasdasda"
-                }}/>
-				</Grid>
-                <Grid item xs={12}>
-                    <TodoItem todoData={{id:"1", title:"ToDo 2", content:"dasdasda"
-                }}/>
+                    {toDoData.map((todoItem, index) => (
+                        <TodoItem 
+                        todoData={{
+                            id: todoItem.id, 
+                            title: todoItem.title, 
+                            content: todoItem.content
+                            }}
+                        />
+                    ))}
 				</Grid>
             </Grid>
         </BaseLayout>

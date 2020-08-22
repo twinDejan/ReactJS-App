@@ -1,22 +1,27 @@
-.app-bar{
-    height: 60px;
+.app-bar {
+	height: 60px;
 }
 
 .page-content-container {
-    background-color: #282c34;
-    padding-top: 10px;
-    padding-left: 40px;
-    padding-right: 40px;
+	background-color: #282c34;
+	padding-top: 10px;
+	padding-left: 40px;
+	padding-right: 40px;
 }
 
-.nav-link{
-    font-size: xx-large;
-    padding-left: 20px;
-    color: rgb(180, 180, 180);
-    text-decoration: none;
+.nav-link {
+	font-size: xx-large;
+	padding-left: 40px;
+	color: rgb(180, 180, 180);
+	text-decoration: none;
 }
 
-.nav-link-active{
-    color: white;
+.nav-link-active {
+	color: white;
 }
 
+.draggableContainer {
+	list-style: none;
+	list-style-type: none;
+	width: 100%;
+}
