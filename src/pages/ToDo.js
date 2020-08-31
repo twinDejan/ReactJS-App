@@ -1,12 +1,23 @@
 import React, {useState} from 'react';
 import BaseLayout from "./_Layout/BaseLayout";
 
+import { sortableContainer, sortableElement } from "react-sortable-hoc";
+import arrayMove from "array-move";
+
 import AddNewToDoItem from "../components/ToDo/AddNewToDoItem";
 import TodoItem from "../components/ToDo/ToDoItem";
 import ToDoPageHeader from "../components/ToDo/ToDoPageHeader";
 
 import Grid from "@material-ui/core/Grid";
 import "./pageStyles.css";
+
+const SortableContainer = sortableContainer(({ children }) => {
+	return <ul className="draggableContainer">{children}</ul>;
+});
+
+const SortableItem = sortableElement(({ value }) => (
+	<div style={{ paddingBottom: 5 }}>{value}</div>
+));
 
 const ToDo = () => {
     const [toDoData, setToDoData] = useState([
@@ -44,33 +55,50 @@ const ToDo = () => {
 			[event.target.name]: event.target.value,
 		});
     };
+
+    const onSortEnd = ({ oldIndex, newIndex, collection }) => {
+		let copyToDoData = toDoData;
+		copyToDoData = arrayMove(copyToDoData, oldIndex, newIndex);
+		setToDoData([...copyToDoData]);
+	};
     
     return(
         <BaseLayout>
-        <div className="page-cintent-container"></div>
-            <Grid container spacing={3}>
-                <Grid key="page-title" item xs={10}>
-                {JSON.stringify(newTodoState)}
-                    <ToDoPageHeader onChangeHandler={onChange}/>
-                </Grid>
-                <Grid key="add-new" item xs={2}>
-                    <AddNewToDoItem addNewTodoHandler={addNewTodo}/>
-                </Grid>
-                <Grid item xs={12}>
-                    {toDoData.map((todoItem, index) => (
-                        <TodoItem 
-                        key={todoItem.id}
-                        todoData={{
-                            id: todoItem.id, 
-                            title: todoItem.title, 
-                            content: todoItem.content
-                            }}
-                            deleteTodoItemHandler={()=>deleteToDoItem(todoItem.id)}
-                        />
-                    ))}
+			<div className="page-content-container">
+				<Grid container spacing={1}>
+					<Grid key="page-title" item xs={10}>
+						{JSON.stringify(newTodoState)}
+						<ToDoPageHeader onChangeHandler={onChange} />
+					</Grid>
+
+					<Grid key="add-new" item xs={2}>
+						<AddNewToDoItem addNewTodoHandler={addNewTodo} />
+					</Grid>
+
+					<SortableContainer onSortEnd={onSortEnd} lockAxis="y" distance={2}>
+						{toDoData.map((todoItem, index) => (
+							<SortableItem
+								key={todoItem.id}
+								index={index}
+								collection={0}
+								value={
+									<Grid item xs={12}>
+										<TodoItem
+											todoData={{
+												id: todoItem.id,
+												title: todoItem.title,
+												content: todoItem.content,
+											}}
+											deleteTodoItemHandler={() => deleteToDoItem(todoItem.id)}
+										/>
+									</Grid>
+								}
+							/>
+						))}
+					</SortableContainer>
 				</Grid>
-            </Grid>
-        </BaseLayout>
+			</div>
+		</BaseLayout>
     );
 };
 

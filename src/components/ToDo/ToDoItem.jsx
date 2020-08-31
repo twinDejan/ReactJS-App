@@ -6,8 +6,7 @@ import Button from "@material-ui/core/Button";
 
 const ToDoItem = ({ todoData, deleteTodoItemHandler }) => {
 	return (
-        <div style={{ paddingBottom: 5 }}>
-            <Card>
+		<Card>
 			<CardHeader
 				title={
 					<div>
@@ -18,7 +17,6 @@ const ToDoItem = ({ todoData, deleteTodoItemHandler }) => {
 			/>
 			<CardContent>{todoData.content}</CardContent>
 		</Card>
-        </div>
 	);
 };
 
