@@ -28,6 +28,16 @@ const ToDo = () => {
         ]);
     }
 
+    const deleteToDoItem = (id) => {
+        const toDoDataCopy = toDoData;
+
+        const indexToDelete = toDoDataCopy.findIndex((item)=> item.id === id);
+
+        toDoDataCopy.splice(indexToDelete, 1);
+
+        setToDoData([...toDoDataCopy]);
+    }
+
     const onChange = (event) => {
 		setNewTodoState({
 			...newTodoState,
@@ -49,11 +59,13 @@ const ToDo = () => {
                 <Grid item xs={12}>
                     {toDoData.map((todoItem, index) => (
                         <TodoItem 
+                        key={todoItem.id}
                         todoData={{
                             id: todoItem.id, 
                             title: todoItem.title, 
                             content: todoItem.content
                             }}
+                            deleteTodoItemHandler={()=>deleteToDoItem(todoItem.id)}
                         />
                     ))}
 				</Grid>
